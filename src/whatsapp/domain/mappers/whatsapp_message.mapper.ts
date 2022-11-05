@@ -1,5 +1,5 @@
-import { v4 as uuid } from "uuid";
-import { WhatsappMessage } from "./whtsapp_message.entity";
+import { v4 as uuid } from 'uuid';
+import { WhatsappMessage } from '../entities/whtsapp_message.entity';
 
 export class WhatsAppMessageMapper implements WhatsappMessage {
   _id: string;
@@ -8,7 +8,7 @@ export class WhatsAppMessageMapper implements WhatsappMessage {
   from: string;
   to: string;
 
-  constructor( { id, message, to } : { id: string, message: string, to: string } ){
+  constructor({ id, message, to }: { id: string; message: string; to: string }) {
     this._id = uuid();
     this.id = id;
     this.message = message;

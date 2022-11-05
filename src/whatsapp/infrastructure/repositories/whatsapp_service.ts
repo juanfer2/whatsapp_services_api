@@ -1,16 +1,19 @@
-import { Client, LocalAuth, NoAuth } from "whatsapp-web.js";
-import { image as imageQr } from "qr-image";
+import { LocalAuth } from 'whatsapp-web.js';
+import { image as imageQr } from 'qr-image';
 const qrcode = require('qrcode-terminal');
-import { WhatsappService, Message } from "../../domain";
+import { WhatsappService, Message } from '../../domain';
+import { Client } from 'whatsapp-web.js';
+import { Service } from 'typedi';
 
+@Service('WhatsappService')
 export class WPService extends Client implements WhatsappService {
   private status = false;
 
   constructor() {
     super({
-      authStrategy: new LocalAuth({ clientId: "client-one" }),
+      authStrategy: new LocalAuth({ clientId: 'client-one' }),
       puppeteer: { headless: true }
-    })
+    });
 
     console.log('Inicializando...');
     this.initialize();
@@ -20,20 +23,24 @@ export class WPService extends Client implements WhatsappService {
       console.log('LOGIN_SUCCESS');
     });
 
-    this.on("auth_failure", () => {
+    this.on('message', message => {
+      console.log('message');
+      console.log(message);
+      console.log('message.body');
+      console.log(message.body);
+    });
+
+    this.on('auth_failure', () => {
       this.status = false;
-      console.log("LOGIN_FAIL");
+      console.log('LOGIN_FAIL');
     });
 
-    this.on("qr", (qr) => {
-      console.log('Escanea el codigo QR que esta en la carepta tmp')
-      // console.log('QR RECEIVED', qr);
-      qrcode.generate(qr, {small: true});
-      this.generateImage(qr)
+    this.on('qr', qr => {
+      console.log('Escanea el codigo QR que esta en la carepta tmp');
+      qrcode.generate(qr, { small: true });
+      this.generateImage(qr);
     });
-    
   }
-
 
   getStatus(): boolean {
     return this.status;
@@ -41,15 +48,15 @@ export class WPService extends Client implements WhatsappService {
 
   private generateImage = (base64: string) => {
     const path = `${process.cwd()}/tmp`;
-    let qr_svg = imageQr(base64, { type: "svg", margin: 4 });
-    qr_svg.pipe(require("fs").createWriteStream(`${path}/qr.svg`));
+    let qr_svg = imageQr(base64, { type: 'svg', margin: 4 });
+    qr_svg.pipe(require('fs').createWriteStream(`${path}/qr.svg`));
     console.log(`⚡ Recuerda que el QR se actualiza cada minuto ⚡'`);
     console.log(`⚡ Actualiza F5 el navegador para mantener el mejor QR⚡`);
   };
 
   async sendMsg(lead: { message: string; phone: string }): Promise<any> {
     try {
-      if (!this.status) return Promise.resolve({ error: "WAIT_LOGIN" });
+      if (!this.status) return Promise.resolve({ error: 'WAIT_LOGIN' });
       const { message, phone } = lead;
       const response = await this.sendMessage(`${phone}@c.us`, message);
       return { id: response.id.id };

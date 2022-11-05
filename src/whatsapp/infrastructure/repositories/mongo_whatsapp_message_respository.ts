@@ -1,8 +1,10 @@
 import { Collection, MongoClient } from 'mongodb';
+import { Service } from 'typedi';
 import { MongoClientFactory } from '../../../shared/infrastructure/databases/mongo';
-import { WhatsAppMessageMapper, WhatsappMessageRepository } from "../../domain";
+import { WhatsAppMessageMapper, WhatsappMessageRepository } from '../../domain';
 
-export class MongoWhatsappMessageRepository implements WhatsappMessageRepository{
+@Service('WhatsappMessageRepository')
+export class MongoWhatsappMessageRepository implements WhatsappMessageRepository {
   async save(data: WhatsAppMessageMapper) {
     const collection = await this.collection();
     const document = { ...data, _id: data._id as any };
@@ -17,7 +19,7 @@ export class MongoWhatsappMessageRepository implements WhatsappMessageRepository
   }
 
   find(data: WhatsAppMessageMapper) {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   protected collectionName(): string {
@@ -26,9 +28,9 @@ export class MongoWhatsappMessageRepository implements WhatsappMessageRepository
 
   protected async collection(): Promise<Collection> {
     const factory = MongoClientFactory;
-    const client: Promise<MongoClient> = factory.createClient(
-      'whatsapp_services', { url: 'mongodb://localhost:27017/whatsapp_services' }
-    );
+    const client: Promise<MongoClient> = factory.createClient('whatsapp_services', {
+      url: 'mongodb://localhost:27017/whatsapp_services'
+    });
     return (await client).db().collection(this.collectionName());
   }
 }

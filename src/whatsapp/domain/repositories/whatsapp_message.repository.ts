@@ -1,7 +1,7 @@
-import { WhatsAppMessageMapper } from "./whatsapp_message.mapper";
+import { WhatsAppMessageMapper } from '../mappers/whatsapp_message.mapper';
 
 export interface WhatsappMessageRepository {
   save(data: WhatsAppMessageMapper): any;
-  all(): any
+  all(): any;
   find(data: WhatsAppMessageMapper): any;
 }

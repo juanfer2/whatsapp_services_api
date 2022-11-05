@@ -1,5 +1,3 @@
-export { Message } from './message.entity'
-export { WhatsAppMessageMapper } from './whatsapp_message.mapper'
-export { WhatsappMessage } from './whtsapp_message.entity'
-export { WhatsappService } from './whatsapp_service'
-export { WhatsappMessageRepository } from './whatsapp_message.repository'
+export * from './entities';
+export * from './mappers';
+export * from './repositories';

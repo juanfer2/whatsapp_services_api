@@ -1,15 +1,12 @@
-import { Router } from "express";
-import { SendMessageUseCase } from "../../application/send_message_use_case";
-import { whatsappController } from '../controllers/whatsapp_controller'
-import { WPService } from "../repositories/whatsapp_service";
+import 'reflect-metadata';
+import { Router } from 'express';
+import Container from 'typedi';
+import { WhatsappController } from '../controllers/whatsapp_controller';
 
 const router = Router();
+const whatsappController = Container.get<WhatsappController>(WhatsappController);
 
-const whastappService = new WPService();
-const sendMessageUseCase = new SendMessageUseCase(whastappService)
-const whatsapp = new whatsappController(sendMessageUseCase);
-
-router.post('/whatsapp/send', whatsapp.sendMessage)
-router.get('/whatsapp/messages', whatsapp.allMessages)
+router.post('/whatsapp/send', whatsappController.sendMessage);
+router.get('/whatsapp/messages', whatsappController.allMessages);
 
 export default router;
