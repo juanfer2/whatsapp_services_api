@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "4001:4001" # MyPort : ContainerPort
+
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    
+    environment:
+      - PORT=4001
