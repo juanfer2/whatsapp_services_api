@@ -18,7 +18,8 @@ export class Server {
 
   async start(): Promise<void> {
     return new Promise(resolve => {
-      this.dbClient?.connect().then(() => this.dbClient?.close());
+      this.dbClient?.connect().then();
+      //then(() => this.dbClient?.close());
 
       this.express.get('/ping', async (req: any, res: any) => {
         res.send({ status: 'pong' });

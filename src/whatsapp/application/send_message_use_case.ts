@@ -1,4 +1,5 @@
-import { Message, WhatsappService } from "../domain";
+import { Message, WhatsAppMessageMapper, WhatsappService } from "../domain";
+import { MongoWhatsappMessageRepository } from "../infrastructure/repositories";
 
 
 export class SendMessageUseCase {
@@ -8,6 +9,11 @@ export class SendMessageUseCase {
   }
 
   async send(message: Message) {
-    return await this.whastappService.sendMsg(message);
+    const response = await this.whastappService.sendMsg(message);
+    const dbMessage = new MongoWhatsappMessageRepository()
+    const newMessage = new WhatsAppMessageMapper({message: message.message, to: message.phone, id: response.id})
+    const data = await dbMessage.save(newMessage);
+
+    return data
   }
 }

@@ -1,6 +1,6 @@
 import { DatabaseClient } from "../../../domain/database_client";
 import { MongoClient as MongoClientConfig } from 'mongodb';
-import { MongoClientFactory } from "./mogo_factory_client";
+import { MongoClientFactory } from "./mongo_factory_client";
 
 const mongoDbURI = 'mongodb://localhost:27017/whatsapp_bot';
 

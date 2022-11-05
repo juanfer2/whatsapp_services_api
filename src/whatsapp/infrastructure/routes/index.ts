@@ -10,5 +10,6 @@ const sendMessageUseCase = new SendMessageUseCase(whastappService)
 const whatsapp = new whatsappController(sendMessageUseCase);
 
 router.post('/whatsapp/send', whatsapp.sendMessage)
+router.get('/whatsapp/messages', whatsapp.allMessages)
 
 export default router;
