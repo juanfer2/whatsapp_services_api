@@ -6,7 +6,8 @@ import { WhatsappController } from '../controllers/whatsapp_controller';
 const router = Router();
 const whatsappController = Container.get<WhatsappController>(WhatsappController);
 
-router.post('/whatsapp/send', whatsappController.sendMessage);
+router.get('/whatsapp/info', whatsappController.getInfo);
+// router.post('/whatsapp/send', whatsappController.sendMessage);
 router.get('/whatsapp/messages', whatsappController.allMessages);
 
 export default router;

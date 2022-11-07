@@ -10,3 +10,5 @@ test-results.xml
 .env
 .wwebjs_auth
 tmp/*
+
+chatbot-account.json
