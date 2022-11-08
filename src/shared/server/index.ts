@@ -7,6 +7,7 @@ import app from '../app';
 import { DatabaseClient } from '../domain/database_client';
 import { SocketIO } from '../infrastructure/servers/socket_io';
 import { WPService } from '../../whatsapp/infrastructure/repositories';
+import { WhatsappWebClient } from '../infrastructure/clients/whatsapp_web_client';
 
 export class Server {
   private express: express.Express;
@@ -26,7 +27,8 @@ export class Server {
 
       const server = http.createServer(this.express);
       const io = new SocetIoServer(server, { cors: { origin: '*' } });
-      const socketIo = new SocketIO(io as any);
+      const whatsappClient = new WhatsappWebClient();
+      const socketIo = new SocketIO(io, whatsappClient);
 
       this.express.get('/ping', async (req: any, res: any) => {
         res.send({ status: 'pong' });
@@ -35,7 +37,7 @@ export class Server {
       app.use(whatsappRoutes);
 
       // http://localhost:4001/static/qr.svg
-      app.use('/static', express.static(path.join(__dirname + '/../public')));
+      app.use('/static', express.static(path.join(__dirname + '/../../../tmp')));
 
       /*
       this.httpServer = this.express.listen(this.port, () => {
