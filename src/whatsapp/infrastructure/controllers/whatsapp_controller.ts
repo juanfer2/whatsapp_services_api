@@ -1,12 +1,13 @@
 import { Request, Response } from 'express';
-import { AllMessagesUseCase, GetUserUseCase, SendMessageUseCase } from '../../application';
+import { AllMessagesUseCase, GetUserUseCase, SendMessageUseCase, FlowConversationUseCase } from '../../application';
 import { Inject, Service } from 'typedi';
 @Service()
 export class WhatsappController {
   constructor(
     @Inject('SendMessageUseCase') private sendMessageUseCase: SendMessageUseCase,
     @Inject('AllMessagesUseCase') private allMessagesUseCase: AllMessagesUseCase,
-    @Inject('GetUserUseCase') private getUserUseCase: GetUserUseCase
+    @Inject('GetUserUseCase') private getUserUseCase: GetUserUseCase,
+    @Inject('FlowConversationUseCase') private flowConversationUseCase: FlowConversationUseCase
   ) {}
 
   public getInfo = async (_: Request, res: Response) => {
@@ -24,6 +25,12 @@ export class WhatsappController {
 
   public allMessages = async (_: Request, res: Response) => {
     const messages = await this.allMessagesUseCase.getAllMessages();
+
+    res.send(messages);
+  };
+
+  public flowConversation = async (_: Request, res: Response) => {
+    const messages = await this.flowConversationUseCase.responseMsg();
 
     res.send(messages);
   };

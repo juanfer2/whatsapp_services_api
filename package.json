@@ -46,7 +46,9 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@google-cloud/dialogflow": "^5.2.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "errorhandler": "^1.5.1",
     "express": "^4.18.1",

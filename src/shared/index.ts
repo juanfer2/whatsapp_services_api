@@ -1,5 +1,5 @@
-import { MongoClient } from "./infrastructure/databases/mongo";
-import { Server } from "./server";
+import { MongoClient } from './infrastructure/databases/mongo';
+import { Server } from './infrastructure/servers';
 
 const mongoDbURI = 'mongodb://localhost:27017/whatsapp_services';
 const port = process.env.PORT || '4001';

@@ -13,9 +13,10 @@ export class SocketIO {
   }
 
   async start() {
+    this.whatsappClient.start(this.io);
+
     this.io.on('connection', (socket: Socket) => {
       console.log('Socket connection open...');
-      this.whatsappClient.start(this.io);
       this.whatsappClient.connect(this.io);
       this.whatsappClient.getQr(this.io);
       // socket.on('update-qr', data => {

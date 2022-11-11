@@ -1,13 +1,13 @@
 import express from 'express';
 import path from 'path';
 import * as http from 'http';
-import { whatsappRoutes } from '../../whatsapp';
+import { whatsappRoutes } from '../../../whatsapp';
 import { Server as SocetIoServer } from 'socket.io';
-import app from '../app';
-import { DatabaseClient } from '../domain/database_client';
-import { SocketIO } from '../infrastructure/servers/socket_io';
-import { WPService } from '../../whatsapp/infrastructure/repositories';
-import { WhatsappWebClient } from '../infrastructure/clients/whatsapp_web_client';
+import app from '../../app';
+import { DatabaseClient } from '../../domain/database_client';
+import { SocketIO } from './socket_io';
+import { WPService } from '../../../whatsapp/infrastructure/repositories';
+import { WhatsappWebClient } from '../clients/whatsapp_web_client';
 
 export class Server {
   private express: express.Express;
