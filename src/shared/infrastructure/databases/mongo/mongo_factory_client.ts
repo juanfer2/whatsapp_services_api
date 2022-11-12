@@ -32,3 +32,5 @@ export class MongoClientFactory {
     this.clients[contextName] = client;
   }
 }
+
+export default MongoClientFactory;
