@@ -19,7 +19,7 @@ export class WhatsappWebClient {
 
   constructor() {
     this.client = WhatsappWebClientFactory.createClient('startConnection', {
-      authStrategy: new LocalAuth({ clientId: 'ayenda' }),
+      authStrategy: new LocalAuth({ clientId: 'juanfer' }),
       puppeteer: { headless: true }
     });
 
@@ -29,6 +29,7 @@ export class WhatsappWebClient {
   start(io: Server) {
     console.log('Inicializando...');
     this.client.initialize();
+    console.log('Inicializando...');
 
     this.client.on('authenticated', () => {
       console.log('authenticated');
