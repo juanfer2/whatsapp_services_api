@@ -50,7 +50,11 @@ export class Server {
       socketIo.start();
 
       server.listen(this.port, () => {
-        console.log(`  Backend App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`);
+        console.log(
+          `  🚀 Backend App is running at http://localhost:${this.port} in ${this.express.get(
+            'env'
+          )} mode`
+        );
         console.log('Press CTRL-C to stop\n');
         resolve();
       });

@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { Logger, MongoClient } from 'mongodb';
 
 export class MongoClientFactory {
   private static clients: { [key: string]: MongoClient } = {};
@@ -21,6 +21,7 @@ export class MongoClientFactory {
 
   private static async createAndConnectClient(config: any): Promise<MongoClient> {
     const client = new MongoClient(config.url, { ignoreUndefined: true });
+    Logger.setLevel('debug');
 
     await client.connect();
 
@@ -31,4 +32,3 @@ export class MongoClientFactory {
     this.clients[contextName] = client;
   }
 }
-

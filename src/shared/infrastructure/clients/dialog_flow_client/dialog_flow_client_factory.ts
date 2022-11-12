@@ -14,10 +14,11 @@ export class DialogFlowClientFactory {
 
   static createClient(pathAccount: string) {
     const dialogFlowConfig = new DialogFlowConfig(pathAccount);
-    console.log(dialogFlowConfig);
+    // console.log(dialogFlowConfig);
+    const dialogFlowAccount = dialogFlowConfig.getAccount();
     const sessionClient = dialogFlowConfig.getSession();
-    console.log(dialogFlowConfig.getAccount());
-    const dialogFlowClient = new DialogFlowClient(sessionClient);
+    // console.log(dialogFlowConfig.getAccount());
+    const dialogFlowClient = new DialogFlowClient(sessionClient, dialogFlowAccount);
 
     return dialogFlowClient;
   }

@@ -7,7 +7,7 @@
     "dev": "npx nodemon ./src/shared/index.ts",
     "type-check": "tsc",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
-    "build": "npm run build:clean && npm run build:tsc && npm run build:di",
+    "build": "npm run build:clean && npm run build:tsc",
     "build:tsc": "npx tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0",

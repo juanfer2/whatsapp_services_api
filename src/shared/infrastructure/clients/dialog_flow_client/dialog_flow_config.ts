@@ -40,6 +40,7 @@ export class DialogFlowConfig {
   }
 
   private checkPathCredentials() {
-    return !fs.existsSync(this.configPath) ? true : false;
+    // return !fs.existsSync(this.configPath) ? true : false;
+    return !fs.existsSync(`${__dirname}/../../../../chatbot-account.json`) ? true : false;
   }
 }

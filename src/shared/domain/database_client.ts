@@ -1,4 +1,4 @@
 export interface DatabaseClient {
-  connect();
-  close()
+  connect(): any;
+  close(): any;
 }

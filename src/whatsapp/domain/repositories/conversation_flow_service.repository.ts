@@ -1,3 +1,3 @@
 export interface ConversationFlowService {
-  responseMsg();
+  responseMsg(message: string): any;
 }
