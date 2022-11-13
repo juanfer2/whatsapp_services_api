@@ -40,7 +40,7 @@ describe('MongoClient', () => {
     it('calls singleton instances for close connexion', async () => {
       await mongoClient.close();
       expect(mockStaticMethod).toHaveBeenCalledTimes(1);
-      expect(mockFunctions.close).toHaveBeenCalledTimes(1);
+      expect(closeConection).toHaveBeenCalledTimes(1);
     });
   });
 });
