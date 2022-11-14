@@ -29,7 +29,6 @@ export class WhatsappWebClient {
   start(io: Server) {
     console.log('Inicializando...');
     this.client.initialize();
-    console.log('Inicializando...');
 
     this.client.on('authenticated', () => {
       console.log('authenticated');

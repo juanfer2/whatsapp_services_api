@@ -43,7 +43,7 @@ specifiers:
   typedi: ^0.10.0
   typescript: ^4.8.4
   uuid: ^9.0.0
-  whatsapp-web.js: ^1.16.4-alpha.0
+  whatsapp-web.js: 1.18.3-alpha.0
   winston: ^3.8.2
 
 dependencies:
@@ -66,7 +66,7 @@ dependencies:
   ts-node: 10.9.1_typescript@4.8.4
   typedi: 0.10.0
   uuid: 9.0.0
-  whatsapp-web.js: 1.18.2
+  whatsapp-web.js: 1.18.3-alpha.0
   winston: 3.8.2
 
 devDependencies:
@@ -6478,8 +6478,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /whatsapp-web.js/1.18.2:
-    resolution: {integrity: sha512-RMzLgstoS9hLK4ix+RchDxXdpuSXuV8jm7SDb/8xc5Ju09zrkOP11dj/4XYszmuwNR0n1VsxNQGp39pnulmcUA==}
+  /whatsapp-web.js/1.18.3-alpha.0:
+    resolution: {integrity: sha512-0NtvVujELTPvnNveoU78st+eMXjo89UtL8KkqpMnG108fV0mMh6IBNMNVakAdtNG25H8rg9smLYOROWIromzww==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@pedroslopez/moduleraid': 5.0.2

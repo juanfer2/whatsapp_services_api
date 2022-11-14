@@ -7,12 +7,13 @@
     "dev": "npx nodemon ./src/shared/index.ts",
     "type-check": "tsc",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
-    "build": "npm run build:clean && npm run build:tsc",
+    "build": "pnpm build:clean && pnpm build:tsc",
     "build:tsc": "npx tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0",
     "clean:qrs": "rm -r tmp/qrs/*; exit 0",
-    "reinstall:node_modules": "rm -r dist && npm i; exit 0",
+    "clean:whastapp-session": "rm -r tmp/.wwebjs_auth; exit 0",
+    "reinstall:node_modules": "rm -r dist && rm -r node_modules && pnpm i; exit 0",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "test-watch": "jest --watch",
@@ -65,7 +66,7 @@
     "ts-node": "^10.9.1",
     "typedi": "^0.10.0",
     "uuid": "^9.0.0",
-    "whatsapp-web.js": "^1.16.4-alpha.0",
+    "whatsapp-web.js": "1.18.3-alpha.0",
     "winston": "^3.8.2"
   }
 }

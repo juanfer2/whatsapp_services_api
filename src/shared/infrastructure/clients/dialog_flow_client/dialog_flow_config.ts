@@ -1,8 +1,6 @@
 import { SessionsClient } from '@google-cloud/dialogflow';
 import { DialogFlowAccount, emptyDialogFlowAccount } from './dialog_flow_account';
 import fs from 'fs';
-// import crypto from 'crypto';
-
 export class DialogFlowConfig {
   configPath: string;
 
