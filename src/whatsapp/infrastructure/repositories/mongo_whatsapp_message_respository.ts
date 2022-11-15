@@ -1,4 +1,4 @@
-import { Collection, MongoClient } from 'mongodb';
+import { Collection, MongoClient, ObjectId } from 'mongodb';
 import { Service } from 'typedi';
 import { MongoClientFactory } from '../../../shared/infrastructure/databases/mongo';
 import { WhatsAppMessageMapper, WhatsappMessageRepository } from '../../domain';
@@ -9,8 +9,11 @@ export class MongoWhatsappMessageRepository implements WhatsappMessageRepository
     const collection = await this.collection();
     const document = { ...data, _id: data._id as any };
     const newData = await collection.insertOne(document);
+    const newDocument = await this.find({ _id: newData.insertedId as any });
 
-    return newData;
+    console.log(newDocument);
+
+    return newDocument;
   }
 
   async all() {
@@ -18,8 +21,11 @@ export class MongoWhatsappMessageRepository implements WhatsappMessageRepository
     return await collection.find({}).toArray();
   }
 
-  find(data: WhatsAppMessageMapper) {
-    throw new Error('Method not implemented.');
+  async find(data: Partial<WhatsAppMessageMapper>) {
+    const collection = await this.collection();
+    const newDocument = await collection.findOne({ ...data });
+
+    return newDocument;
   }
 
   protected collectionName(): string {

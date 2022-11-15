@@ -4,7 +4,7 @@ import { Message, WhatsappService } from '../../domain';
 
 @Service('WhatsappService')
 export class WhatsappWebService extends WhatsappWebClient implements WhatsappService {
-  async sendMsg(lead: { message: string; phone: string }): Promise<any> {
+  async sendMsg(lead: Message): Promise<any> {
     try {
       if (!this.client.info) return Promise.resolve({ error: 'WAIT_LOGIN' });
       const { message, phone } = lead;
