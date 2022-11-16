@@ -1,13 +1,13 @@
 import express from 'express';
-import path from 'path';
 import * as http from 'http';
-import { whatsappRoutes } from '../../../whatsapp';
+import path from 'path';
 import { Server as SocetIoServer } from 'socket.io';
+import { cohortRoutes } from '../../../cohorts';
+import { whatsappRoutes } from '../../../whatsapp';
 import app from '../../app';
 import { DatabaseClient } from '../../domain/database_client';
-import { SocketIO } from './socket_io';
-import { WPService } from '../../../whatsapp/infrastructure/repositories';
 import { WhatsappWebClient } from '../clients/whatsapp_web_client';
+import { SocketIO } from './socket_io';
 
 export class Server {
   private express: express.Express;
@@ -35,6 +35,7 @@ export class Server {
       });
 
       app.use(whatsappRoutes);
+      app.use(cohortRoutes);
 
       // http://localhost:4001/static/qr.svg
       app.use('/static', express.static(path.join(__dirname + '/../../../tmp')));
