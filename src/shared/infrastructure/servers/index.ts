@@ -2,7 +2,6 @@ import express from 'express';
 import * as http from 'http';
 import path from 'path';
 import { Server as SocetIoServer } from 'socket.io';
-import { cohortRoutes } from '../../../cohorts';
 import { whatsappRoutes } from '../../../whatsapp';
 import app from '../../app';
 import { DatabaseClient } from '../../domain/database_client';
@@ -35,7 +34,7 @@ export class Server {
       });
 
       app.use(whatsappRoutes);
-      app.use(cohortRoutes);
+      /// app.use(cohortRoutes);
 
       // http://localhost:4001/static/qr.svg
       app.use('/static', express.static(path.join(__dirname + '/../../../tmp')));
