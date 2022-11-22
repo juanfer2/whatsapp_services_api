@@ -13,6 +13,8 @@ export class SendMessageUseCase {
   }
 
   async sendMultiple(phones: string[], message: string) {
+    console.log(phones);
+
     const data = phones.map(async (phone: string) => {
       return await this.sendMessage({ phone, message });
     });
